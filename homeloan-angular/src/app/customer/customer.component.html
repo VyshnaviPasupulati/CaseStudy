@@ -1,0 +1,142 @@
+<!--
+  @author S Satya Sri,P Vyshnavi, Tarishi Geetey
+-->
+<div class="customer-page">
+  <mat-card >
+    <mat-card-title style="text-align:center;">Registration Step-1</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+
+      <mat-tab label="Customer Details">
+        <mat-card-content>
+          <form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
+                
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.custName"
+          name="custName"
+          pattern="[A-Za-z]{3,}[ ][A-Za-z]{3,}"
+          #custName="ngModel"
+          placeholder="Enter Full Name" required>
+              <mat-error *ngIf="custName.invalid">
+                Name is required
+              </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="customer.cust_dob"
+          name="cust_dob"
+          required
+          #cust_dob="ngModel"
+          placeholder="Enter DoB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="cust_dob.invalid">
+                DoB is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                  <mat-label>Gender</mat-label>
+                  <mat-select  [(ngModel)]="customer.cust_gender"
+          name="cust_gender"
+          #cust_gender="ngModel">
+                    <mat-option  *ngFor="let g of cust_genders" [value]="g">{{g}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.phoneNo"
+          name="phoneNo"
+          #phoneNo="ngModel"
+          pattern="[7-9][0-9]{9}"
+          placeholder="Enter Phone No. " required>
+              <mat-error *ngIf="phoneNo.invalid">
+                Phone Number is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="email" [(ngModel)]="customer.cust_email"
+          name="cust_email"
+          #cust_email="ngModel"
+          placeholder="Enter email id" required>
+              <mat-error *ngIf="cust_email.invalid">
+                Email is required
+              </mat-error>
+
+            </mat-form-field>
+            
+            
+          </form>
+        </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Customer Details">
+        <mat-card-content>
+          <form (ngSubmit)="saveCustomer()" #addfrm="ngForm">
+
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.cust_address"
+          name="cust_address"
+          #cust_address="ngModel"
+          placeholder="Enter Address" required>
+              <mat-error *ngIf="cust_address.invalid">
+                Address is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput  [(ngModel)]="customer.city"
+          name="city"
+          pattern="[A-Za-z]{3,}"
+          #city="ngModel"
+          placeholder="Enter City" required>
+              <mat-error *ngIf="city.invalid">
+                City is required
+              </mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                  <mat-label>State</mat-label>
+                  <mat-select  [(ngModel)]="customer.state"
+          name="state"
+          required
+          #state="ngModel"
+          placeholder="Enter State">
+                    <mat-option  *ngFor="let g of states" [value]="g">{{g}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            
+            <mat-form-field>
+              <input matInput [(ngModel)]="customer.pincode"
+          name="pincode"
+          pattern="[0-9]{6}"
+          #pincode="ngModel"
+          placeholder="Enter Pincode" required>
+              <mat-error *ngIf="pincode.invalid">
+                Pincode is required
+              </mat-error>
+
+            </mat-form-field><mat-form-field>
+              <input matInput type="password" [(ngModel)]="customer.passwd"
+          name="passwd"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"
+          #passwd="ngModel"
+          placeholder="Enter password " required>
+              <mat-error *ngIf="passwd.invalid">
+                Password is required
+              </mat-error>
+
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!addfrm.valid" class="login-button">
+              Next
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+    
+  </mat-card>
+  
+</div>
